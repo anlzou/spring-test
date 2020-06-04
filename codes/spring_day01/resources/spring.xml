@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+<!--
+    bean标签：将指定类对象的创建过程交给Spirng容器来管理
+    class属性：指定具体类的路径
+    id属性：为bean标签取唯一标识符
+    scope属性：指定Spring创建对象时的方式，singleton单例、prototype多例，默认为单例
+        解释：scope也叫作用域/范围，如果是单例，则声明的多个不同对象的名称其是同一个对象（哈希码相同，构造函数只调用一次）
+
+    lazy-init属性：懒惰/非懒得加载，ture为懒加载、false为非懒加载，default为非懒加载
+ -->
+    <bean id="myDog" class="com.anlzou.pojo.Dog" scope="prototype" lazy-init="default"></bean>
+</beans>

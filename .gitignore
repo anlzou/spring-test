@@ -1,0 +1,6 @@
+# IDE配置
+
+**/.idea
+**/lib
+**/out
+*.iml
