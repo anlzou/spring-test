@@ -3,18 +3,62 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-<!--
-    bean标签：将指定类对象的创建过程交给Spirng容器来管理
-    class属性：指定具体类的路径
-    id属性：为bean标签取唯一标识符
-    scope属性：指定Spring创建对象时的方式，singleton单例、prototype多例，默认为单例
-        解释：scope也叫作用域/范围，如果是单例，则声明的多个不同对象的名称其是同一个对象（哈希码相同，构造函数只调用一次）
+    <!--
+        bean标签：将指定类对象的创建过程交给Spirng容器来管理
+        class属性：指定具体类的路径
+        id属性：为bean标签取唯一标识符
+        scope属性：指定Spring创建对象时的方式，singleton单例、prototype多例，默认为单例
+            解释：scope也叫作用域/范围，如果是单例，则声明的多个不同对象的名称其是同一个对象（哈希码相同，构造函数只调用一次）
 
-    lazy-init属性：懒惰/非懒得加载，ture为懒加载、false为非懒加载，default为非懒加载
+        lazy-init属性：懒惰/非懒得加载，ture为懒加载、false为非懒加载，default为非懒加载
 
-    init-method属性：在创建对象后调用构造方法后调用指定方法
-    destroy-method属性：关闭整个spring容器的时候，才会调用指定方法
-        注意事项：当对象的创建方式为多例(prototype)时，不会执行destroy方法
- -->
-    <bean id="myDog" class="com.anlzou.pojo.Dog" scope="singleton" lazy-init="default" init-method="init" destroy-method="destroy"></bean>
+        init-method属性：在创建对象后调用构造方法后调用指定方法
+        destroy-method属性：关闭整个spring容器的时候，才会调用指定方法
+            注意事项：当对象的创建方式为多例(prototype)时，不会执行destroy方法
+     -->
+    <bean id="myDog" class="com.anlzou.pojo.Dog" scope="singleton" lazy-init="default" init-method="init"
+          destroy-method="destroy"></bean>
+
+    <!--    Admin类中必须有无参构造方法
+            把Admin对象交给Spring容器
+    -->
+    <bean id="master" class="com.anlzou.pojo.Admin"></bean>
+
+    <!--    DB类交给Spring容器管理    -->
+    <bean id="db" class="com.anlzou.pojo.DB">
+        <!--     通过driver 属性对应的setDriver方法给DB的对象赋值-->
+        <property name="driver" value="con.mysql.jdbc.Driver"></property>
+        <!--    spring框架会自动把"3306"转为int
+                框架自动调用setPort方法，所以类中必须规范写该方法
+        -->
+        <property name="port" value="3306"></property>
+        <property name="price" value="3.14"></property>
+
+        <!--    给DB对象属性中的Admin类型赋值
+                ref属性：称为引用，引用其他对象
+        -->
+        <property name="admin" ref="master"></property>
+        <!--    给List类型的属性赋值
+                List的形式如下，什么类型都可以装
+        -->
+        <property name="list">
+            <list>
+                <value>list集合</value>
+                <value>true</value>
+                <value>3.14</value>
+                <ref bean="master"></ref>
+            </list>
+        </property>
+        <!--    给Set类型的属性赋值
+                List的形式如下，什么类型都可以装
+        -->
+        <property name="set">
+            <set>
+                <value>list集合</value>
+                <value>true</value>
+                <value>3.14</value>
+                <ref bean="master"></ref>
+            </set>
+        </property>
+    </bean>
 </beans>
