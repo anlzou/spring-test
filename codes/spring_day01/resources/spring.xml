@@ -69,5 +69,13 @@
                 <prop key="password">root</prop>
             </props>
         </property>
+    <!--    给Map类型赋值    -->
+        <property name="map">
+            <map>
+                <!--       entry属性：条目，类似字典类型         -->
+                <entry key="uName" value="王二麻子"></entry>
+                <entry key="bookName" value="Spring"></entry>
+            </map>
+        </property>
     </bean>
 </beans>
