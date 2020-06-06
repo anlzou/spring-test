@@ -22,10 +22,15 @@ public class DB {
 
     private Integer port;//端口号
     private Float price;//价格
+
     private Admin admin;//当前数据库管理员
+
+    //单列集合
     private List list;//什么都可以装
     private Set set;
-    private Map<String, Object> map;
+
+    //双例
+    private Map<String, Object> map;//key:value，可以都是Object类型
     private Properties properties;//表示.properties的配置文件
 
     //spring中必须写无参构造方法

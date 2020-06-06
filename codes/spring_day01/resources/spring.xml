@@ -54,11 +54,20 @@
         -->
         <property name="set">
             <set>
-                <value>list集合</value>
-                <value>true</value>
-                <value>3.14</value>
+                <value>set集合1</value>
+                <value>set集合2</value>
+                <value>2.14</value>
                 <ref bean="master"></ref>
             </set>
+        </property>
+        <!--    给Properties类型的属性赋值    -->
+        <property name="properties">
+            <props>
+                <!--      可以装多个键值对      -->
+                <prop key="dirver">com.mysql.jdbc.Driver</prop>
+                <prop key="username">root</prop>
+                <prop key="password">root</prop>
+            </props>
         </property>
     </bean>
 </beans>
