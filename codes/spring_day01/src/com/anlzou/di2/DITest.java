@@ -21,7 +21,7 @@ public class DITest {
 
         //启动 spring 容器
         ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
-        DB db = context.getBean("db", DB.class);
+        DB db = context.getBean("smallDB", DB.class);
 
         System.out.println(db);
         System.out.println(db.getPrice());
