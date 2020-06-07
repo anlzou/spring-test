@@ -35,6 +35,7 @@
         <aop:aspect ref="login" order="1">
             <aop:around method="login" pointcut-ref="qieDian"></aop:around>
         </aop:aspect>
+
         <aop:aspect ref="security" order="2">
             <aop:before method="isSecurity" pointcut-ref="qieDian"></aop:before>
         </aop:aspect>

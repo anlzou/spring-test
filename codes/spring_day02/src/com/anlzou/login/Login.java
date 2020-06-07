@@ -13,6 +13,12 @@ public class Login {
     private String uName = "admin";//用户名
     private String pwd = "123456";//密码
 
+    /**
+     * @Author：anlzou
+     * @Date：2020/6/7 10:51
+     * @Descritpion：
+     * @param： * @param ProceedingJoinPoint pp,Spring框架中
+     */
     public void login(ProceedingJoinPoint pp) {
         //表：users:   admin 、123456
         if ("admin".equals(uName) && "123456".equals(pwd)) {//登录成功
