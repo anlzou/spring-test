@@ -19,15 +19,25 @@
 
     <!--配置aop-->
     <aop:config>
-        <!--配置切入点-->
+        <!--配置切入点
+            expression标签：用法在Spring手册的“#6.2.3. 声明一个切入点（pointcut）”
+            解释：impl包下的CbcDaoImpl类的所有方法都是切入点
+        -->
         <aop:pointcut id="qieDian" expression="execution (* com.anlzou.dao.impl.CbcDaoImpl.*(..))"></aop:pointcut>
-        <!--配置切面与前置通知-->
+
+        <!--配置切面与前置通知
+            order标签：
+                在前置通知中，值越小越先执行
+                在后置通知中，值越大越先执行
+            以下为积木格式，模块化开发，互补影响，体现了低耦合
+        -->
         <aop:aspect ref="login" order="1">
             <aop:around method="login" pointcut-ref="qieDian"></aop:around>
         </aop:aspect>
         <aop:aspect ref="security" order="2">
             <aop:before method="isSecurity" pointcut-ref="qieDian"></aop:before>
         </aop:aspect>
+
         <!--后置-->
         <aop:aspect ref="log" order="4">
             <aop:after method="log" pointcut-ref="qieDian"></aop:after>
